@@ -11,6 +11,8 @@ import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
 
+    Calculator calculator = new Calculator();
+
     private static final char ADDITION = '+';
     private static final char SUBTRACTION = '-';
     private static final char MULTIPLICATION = '*';
@@ -19,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     private double num1;
     private double num2;
     private double sum;
+
+    private boolean equalsClicked;
 
     private char CURRENT_ACTION;
 
@@ -64,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         ac.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                calculator.clearAll();
                 display.setText("");
                 operation.setText("");
             }
@@ -72,69 +77,79 @@ public class MainActivity extends AppCompatActivity {
         one.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                display.setText(display.getText()+"1");
+                display.setText(display.getText() + "1");
             }
         });
         two.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                display.setText(display.getText()+"2");
+                display.setText(display.getText() + "2");
             }
         });
         three.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                display.setText(display.getText()+"3");
+                display.setText(display.getText() + "3");
             }
         });
         four.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                display.setText(display.getText()+"4");
+
+                display.setText(display.getText() + "4");
             }
         });
         five.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                display.setText(display.getText()+"5");
+
+                display.setText(display.getText() + "5");
             }
         });
         six.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                display.setText(display.getText()+"6");
+
+                display.setText(display.getText() + "6");
             }
         });
         seven.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                display.setText(display.getText()+"7");
+                display.setText(display.getText() + "7");
             }
         });
         eight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                display.setText(display.getText()+"8");
+                display.setText(display.getText() + "8");
             }
         });
         nine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                display.setText(display.getText()+"9");
+
+                display.setText(display.getText() + "9");
             }
         });
         zero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                display.setText(display.getText()+"0");
+
+                display.setText(display.getText() + "0");
             }
         });
         double_zero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                display.setText(display.getText()+"00");
+                display.setText(display.getText() + "00");
             }
         });
+
+        // Problem: mehrere Ziffern können auch als eine Zahl eingegeben werden.
+        // Zwischenspeicher mit geschriebenen Ziffern und bei Klick auf plus geteilt etc. erst in calculator.addNumber(x);
+        // +/- Taste ???????
+
 
         plus_minus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,36 +163,49 @@ public class MainActivity extends AppCompatActivity {
         divide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                num1 = Double.parseDouble(display.getText().toString());
-                CURRENT_ACTION = DIVISION;
-                operation.setText(display.getText() + " / ");
-                display.setText("");
+//                num1 = Double.parseDouble(display.getText().toString());
+//                Log.e("num1: ", Double.toString(num1));
+//                    CURRENT_ACTION = DIVISION;
+//                    operation.setText(display.getText() + " / ");
+//                    display.setText("");
+                calculator.addOp("/");
             }
         });
         multiply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                num1 = Double.parseDouble(display.getText().toString());
-                CURRENT_ACTION = MULTIPLICATION;
-                operation.setText(display.getText() + " * ");
-                display.setText("");
+//                num1 = Double.parseDouble(display.getText().toString());
+//
+//                    CURRENT_ACTION = MULTIPLICATION;
+//                    operation.setText(display.getText() + " * ");
+//                    display.setText("");
+                calculator.addOp("*");
             }
         });
         minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                num1 = Double.parseDouble(display.getText().toString());
-                CURRENT_ACTION = SUBTRACTION;
-                operation.setText(display.getText() + " - ");
-                display.setText("");
+//                num1 = Double.parseDouble(display.getText().toString());
+//                    CURRENT_ACTION = SUBTRACTION;
+//                    operation.setText(display.getText() + " - ");
+//                    display.setText("");
+                calculator.addOp("-");
             }
         });
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                num1 = Double.parseDouble(display.getText().toString());
-                CURRENT_ACTION = ADDITION;
-                operation.setText(display.getText() + " + ");
+//                num1 = Double.parseDouble(display.getText().toString());
+//                Log.e("in Plusfunktion display.getText(): ", display.getText().toString());
+//                Log.e("Variable num1: ", Double.toString(num1));
+//                CURRENT_ACTION = ADDITION;
+//                operation.setText(display.getText() + " + ");
+//                display.setText("");
+                //calculator.addOp("+");
+
+                calculator.addNumber(Double.parseDouble(display.getText().toString()));
+                calculator.addOp("+");
+                operation.setText(operation.getText() + " " + display.getText() + " +");
                 display.setText("");
             }
         });
@@ -185,32 +213,37 @@ public class MainActivity extends AppCompatActivity {
         equals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                num2 = Double.parseDouble(display.getText().toString());
-                Log.i("CURRENT_ACTION", Character.toString(CURRENT_ACTION));
-                switch (CURRENT_ACTION) {
-                    case '+':
-                        Log.i("CURRENT_ACTION", "Plus");
-                        sum = num1 + num2;
-                        break;
-                    case '-':
-                        Log.i("CURRENT_ACTION", "Minus");
-                        sum = num1 - num2;
-                        break;
-                    case '*':
-                        Log.i("CURRENT_ACTION", "Multiplikation");
-                        sum = num1 * num2;
-                        break;
-                    case '/':
-                        Log.i("CURRENT_ACTION", "Division");
-                        sum = num1 / num2;
-                        break;
-                }
-                operation.setText(operation.getText().toString() + display.getText());
+                calculator.addNumber(Double.parseDouble(display.getText().toString()));
+                operation.setText(operation.getText() + " " + display.getText());
+                double sum = calculator.calculate();
                 display.setText(Double.toString(sum));
-                num1 = 0;
-                num2 = 0;
-                
+                equalsClicked = true;
+
+//                num2 = Double.parseDouble(display.getText().toString());
+//                Log.i("CURRENT_ACTION", Character.toString(CURRENT_ACTION));
+//                switch (CURRENT_ACTION) {
+//                    case '+':
+//                        Log.i("CURRENT_ACTION", "Plus");
+//                        sum = num1 + num2;
+//                        break;
+//                    case '-':
+//                        Log.i("CURRENT_ACTION", "Minus");
+//                        sum = num1 - num2;
+//                        break;
+//                    case '*':
+//                        Log.i("CURRENT_ACTION", "Multiplikation");
+//                        sum = num1 * num2;
+//                        break;
+//                    case '/':
+//                        Log.i("CURRENT_ACTION", "Division");
+//                        sum = num1 / num2;
+//                        break;
+//                }
+//                operation.setText(operation.getText().toString() + display.getText());
+//                display.setText(Double.toString(sum));
+//                num1 = 0;
+//                num2 = 0;
+
             }
         });
 

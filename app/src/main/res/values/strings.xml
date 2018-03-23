@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Taschenrechner</string>
+    <string name="app_name">aa_Taschenrechner</string>
     <string name="ac">AC</string>
     <string name="plusminus">"+/-"</string>
     <string name="percent">%</string>
