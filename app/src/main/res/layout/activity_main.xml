@@ -58,30 +58,7 @@
             android:textColor="@color/colorPrimary"
             android:background="@color/colorBg"
             android:text="@string/ac" />
-        <Button
-            android:id="@+id/plus_minus"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:padding="8dp"
-            android:layout_marginRight="1dp"
-            android:textColor="@color/colorPrimary"
-            android:background="@color/colorBg"
-            android:text="@string/plusminus" />
-        <Button
-            android:id="@+id/percent"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:padding="8dp"
-            android:layout_marginRight="1dp"
-            android:textColor="@color/colorPrimary"
-            android:background="@color/colorBg"
-            android:text="@string/percent" />
+
         <Button
             android:id="@+id/divide"
             android:layout_width="0dp"

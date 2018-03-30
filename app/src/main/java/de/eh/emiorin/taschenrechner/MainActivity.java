@@ -55,9 +55,7 @@ public class MainActivity extends AppCompatActivity {
         minus = (Button) findViewById(R.id.minus);
         divide = (Button) findViewById(R.id.divide);
         multiply = (Button) findViewById(R.id.multiply);
-        plus_minus = (Button) findViewById(R.id.plus_minus);
         ac = (Button) findViewById(R.id.ac);
-        percent = (Button) findViewById(R.id.percent);
         dot = (Button) findViewById(R.id.dot);
         double_zero = (Button) findViewById(R.id.double_zero);
         equals = (Button) findViewById(R.id.equal);
@@ -77,71 +75,121 @@ public class MainActivity extends AppCompatActivity {
         one.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(equalsClicked){
+                    display.setText("");
+                    operation.setText("");
+                    equalsClicked = false;
+                }
                 display.setText(display.getText() + "1");
             }
         });
         two.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(equalsClicked){
+                    display.setText("");
+                    operation.setText("");
+                    equalsClicked = false;
+                }
                 display.setText(display.getText() + "2");
             }
         });
         three.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(equalsClicked){
+                    display.setText("");
+                    operation.setText("");
+                    equalsClicked = false;
+                }
                 display.setText(display.getText() + "3");
             }
         });
         four.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(equalsClicked){
+                    display.setText("");
+                    operation.setText("");
+                    equalsClicked = false;
+                }
                 display.setText(display.getText() + "4");
             }
         });
         five.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(equalsClicked){
+                    display.setText("");
+                    operation.setText("");
+                    equalsClicked = false;
+                }
                 display.setText(display.getText() + "5");
             }
         });
         six.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(equalsClicked){
+                    display.setText("");
+                    operation.setText("");
+                    equalsClicked = false;
+                }
                 display.setText(display.getText() + "6");
             }
         });
         seven.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(equalsClicked){
+                    display.setText("");
+                    operation.setText("");
+                    equalsClicked = false;
+                }
                 display.setText(display.getText() + "7");
             }
         });
         eight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(equalsClicked){
+                    display.setText("");
+                    operation.setText("");
+                    equalsClicked = false;
+                }
                 display.setText(display.getText() + "8");
             }
         });
         nine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(equalsClicked){
+                    display.setText("");
+                    operation.setText("");
+                    equalsClicked = false;
+                }
                 display.setText(display.getText() + "9");
             }
         });
         zero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(equalsClicked){
+                    display.setText("");
+                    operation.setText("");
+                    equalsClicked = false;
+                }
                 display.setText(display.getText() + "0");
             }
         });
         double_zero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(equalsClicked){
+                    display.setText("");
+                    operation.setText("");
+                    equalsClicked = false;
+                }
                 display.setText(display.getText() + "00");
             }
         });
@@ -151,58 +199,37 @@ public class MainActivity extends AppCompatActivity {
         // +/- Taste ???????
 
 
-        plus_minus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                double tmp = Double.parseDouble(display.getText().toString()) * -1;
-
-                display.setText(Double.toString(tmp));
-            }
-        });
 
         divide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                num1 = Double.parseDouble(display.getText().toString());
-//                Log.e("num1: ", Double.toString(num1));
-//                    CURRENT_ACTION = DIVISION;
-//                    operation.setText(display.getText() + " / ");
-//                    display.setText("");
+                calculator.addNumber(Double.parseDouble(display.getText().toString()));
                 calculator.addOp("/");
+                operation.setText(operation.getText() + " " + display.getText() + " /");
+                display.setText("");
             }
         });
         multiply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                num1 = Double.parseDouble(display.getText().toString());
-//
-//                    CURRENT_ACTION = MULTIPLICATION;
-//                    operation.setText(display.getText() + " * ");
-//                    display.setText("");
+                calculator.addNumber(Double.parseDouble(display.getText().toString()));
                 calculator.addOp("*");
+                operation.setText(operation.getText() + " " + display.getText() + " *");
+                display.setText("");
             }
         });
         minus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                num1 = Double.parseDouble(display.getText().toString());
-//                    CURRENT_ACTION = SUBTRACTION;
-//                    operation.setText(display.getText() + " - ");
-//                    display.setText("");
+                calculator.addNumber(Double.parseDouble(display.getText().toString()));
                 calculator.addOp("-");
+                operation.setText(operation.getText() + " " + display.getText() + " -");
+                display.setText("");
             }
         });
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                num1 = Double.parseDouble(display.getText().toString());
-//                Log.e("in Plusfunktion display.getText(): ", display.getText().toString());
-//                Log.e("Variable num1: ", Double.toString(num1));
-//                CURRENT_ACTION = ADDITION;
-//                operation.setText(display.getText() + " + ");
-//                display.setText("");
-                //calculator.addOp("+");
-
                 calculator.addNumber(Double.parseDouble(display.getText().toString()));
                 calculator.addOp("+");
                 operation.setText(operation.getText() + " " + display.getText() + " +");
@@ -218,32 +245,7 @@ public class MainActivity extends AppCompatActivity {
                 double sum = calculator.calculate();
                 display.setText(Double.toString(sum));
                 equalsClicked = true;
-
-//                num2 = Double.parseDouble(display.getText().toString());
-//                Log.i("CURRENT_ACTION", Character.toString(CURRENT_ACTION));
-//                switch (CURRENT_ACTION) {
-//                    case '+':
-//                        Log.i("CURRENT_ACTION", "Plus");
-//                        sum = num1 + num2;
-//                        break;
-//                    case '-':
-//                        Log.i("CURRENT_ACTION", "Minus");
-//                        sum = num1 - num2;
-//                        break;
-//                    case '*':
-//                        Log.i("CURRENT_ACTION", "Multiplikation");
-//                        sum = num1 * num2;
-//                        break;
-//                    case '/':
-//                        Log.i("CURRENT_ACTION", "Division");
-//                        sum = num1 / num2;
-//                        break;
-//                }
-//                operation.setText(operation.getText().toString() + display.getText());
-//                display.setText(Double.toString(sum));
-//                num1 = 0;
-//                num2 = 0;
-
+                calculator.clearAll();
             }
         });
 
